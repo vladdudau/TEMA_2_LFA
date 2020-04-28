@@ -92,7 +92,7 @@ def lambda_inchidere(inceput,stare,inchideri,tranzitii):
             lambda_inchidere(inceput,x,inchideri,tranzitii)
 #apel recursiv, un fel de backtracking, verific in ce stari pot ajunge din fiecare stare
 
-#1.2 Pasul 2. Calcularea functiei de tranzitie δ
+#PASUL 2 IN TRANSFORMAREA LNFA TO NFA-Calcularea functiei de tranzitie δ
 
 #Cu ajutorul λ-inchiderii, putem calcula functia de tranzitie a NFA-ului pe care dorim sa il
 #construim.
@@ -123,14 +123,15 @@ def transforma_LNFA_in_NFA(tranzitii,nr_stari,lista_stari,initiala,finale, alfab
     for stare_curenta in lista_stari:
         lambda_inchidere(stare_curenta,stare_curenta,inchideri,tranzitii)
 
-    #pasul 1.1, am pus in lambda_inchidere stare_curenta de 2 ori deoarece stare_curenta este starea din care plecam, initiala
+    #PASUL 1 IN TRANSOFRMAREA LNFA TO NFA-am pus in lambda_inchidere stare_curenta de 2 ori deoarece stare_curenta este
+    # starea din care plecam, initiala
 
     transformare_in_nfa={}
     for stare_curenta in lista_stari:
         for litera in alfabet:
             calcularea_tranzitie_lambda_star(stare_curenta,litera,inchideri,transformare_in_nfa,tranzitii)
 
-    #pasul 1.2, calcularea tranzitiei lambda star
+    #PASUL 2 IN TRANSFORMAREA LNFA TO NFA-CALCULAREA TRAZITIEI LAMBDA STAR
 
     noile_stari_finale=finale.copy()
     for stare_curenta in lista_stari:
@@ -138,7 +139,7 @@ def transforma_LNFA_in_NFA(tranzitii,nr_stari,lista_stari,initiala,finale, alfab
             if stare_curenta not in noile_stari_finale and final in inchideri[stare_curenta]:
                 noile_stari_finale+=[stare_curenta]
 
-    # pasul 1.3 Calcularea starilor finale si initiale.
+    # PASUL 3 IN TRANSFORMEA LNFA TO NFA-CALCULAREA STARILOR INITIALE SI FINALE
     # Starea initiala ramane aceasi cu cea a automatlui initial, in cazul nostru 0.
     # Starile finale vor fi toate starile care contin o stare finala din automatul initial
 
@@ -171,7 +172,7 @@ def transforma_LNFA_in_NFA(tranzitii,nr_stari,lista_stari,initiala,finale, alfab
             stare_urmatoare+=1
         stare_curenta+=1
 
-        # pasul 1.4
+        # PASUL 4 IN TRANSFORMAREA LNFA TO NFA
 
     return transformare_in_nfa, nr_stari, lista_stari,initiala, noile_stari_finale, alfabet
 
@@ -406,34 +407,34 @@ print('TRANSFORMA LNFA IN NFA: ')
 nr_stari, lista_stari, nr_litere_alfabet ,alfabet,initiala, nr_stari_finale, finale,nr_tranzitii, tranzitii=Citire_LNFA(fisier_citire_lnfa)
 LAMBDA_NFA_IN_NFA, nr_stari, lista_stari, initiala, finale, alfabet=transforma_LNFA_in_NFA(tranzitii,nr_stari,lista_stari,initiala,finale,alfabet)
 
-print('nr de stari: ',nr_stari)
-print('lista stari: ',lista_stari)
-print('alfabet: ',alfabet)
-print('stare initiala: ',initiala)
-print('stari finale: ',finale)
-print('tranzitii: ', LAMBDA_NFA_IN_NFA)
+print('NUMAR DE STARI: ',nr_stari)
+print('LISTA DE STARI: ',lista_stari)
+print('ALFABET: ',alfabet)
+print('STARE INITIALA: ',initiala)
+print('STARI FINALE: ',finale)
+print('TRANZITII: ', LAMBDA_NFA_IN_NFA)
 print('\n')
 
 print('TRANSFORMA NFA IN DFA: ')
 nr_stari, lista_stari, nr_litere_alfabet, alfabet, initiala, nr_stari_finale, finale, nr_tranzitii, tranzitii=Citire_NFA(fisier_citire_nfa)
 NFA_IN_DFA, nr_stari, lista_stari, initiala, finale, alfabet=TRANSFORMA_NFA_IN_DFA(tranzitii, nr_stari, lista_stari, initiala, finale,alfabet)
 
-print('nr de stari: ',nr_stari)
-print('lista stari: ',lista_stari)
-print('alfabet: ',alfabet)
-print('stare initiala: ',initiala)
-print('stari finale: ',finale)
-print('tranzitii: ', NFA_IN_DFA)
+print('NUMAR DE STARI: ',nr_stari)
+print('LISTA DE STARI: ',lista_stari)
+print('ALFABET: ',alfabet)
+print('STARE INITIALA: ',initiala)
+print('STARI FINALE: ',finale)
+print('TRANZITII: ', NFA_IN_DFA)
 print('\n')
 
 print('TRANSFORMA DFA IN DFA MINIMIZAT: ')
 nr_stari, lista_stari, nr_litere_alfabet, alfabet, initiala, nr_stari_finale, finale, nr_tranzitii, tranzitii=Citire_DFA(fisier_citire_dfa)
 DFA_IN_DFAMIN, nr_stari, lista_stari, initiala, finale, alfabet=TRANSFORMA_DFA_IN_DFAMIN(tranzitii, nr_stari, lista_stari, initiala, finale, alfabet)
 
-print('nr de stari: ',nr_stari)
-print('lista stari: ',lista_stari)
-print('alfabet: ',alfabet)
-print('stare initiala: ',initiala)
-print('stari finale: ',finale)
-print('tranzitii: ', DFA_IN_DFAMIN)
+print('NUMAR DE STARI: ',nr_stari)
+print('LISTA DE STARI: ',lista_stari)
+print('ALFABET: ',alfabet)
+print('STARE INITIALA: ',initiala)
+print('STARI FINALE: ',finale)
+print('TRANZITII: ', DFA_IN_DFAMIN)
 print('\n')
