@@ -75,7 +75,7 @@ def Citire_DFA(fisier):
     fisier.close()
     return nr_stari,lista_stari,nr_litere_alfabet,alfabet,initiala,nr_stari_finale,finale,nr_tranzitii, tranzitii
 
-#1.1 Pasul 1. Calcularea λ-inchiderii.
+#PASUL 1 IN CALCULAREA NFA TO DFA-CALCULAREA LAMBDA INCHIDERII
 
 #Functie care calculeaza lambda inchiderea
 #Orice stare face parte din propria sa λ-inchidere. Practic putem considera
